@@ -67,14 +67,30 @@ class MainWindow:
     # def changeText(self):
     #     return MyLabel.changeText(self.root)
 
-def maFonction(sender):
-    print(f"J'ai été clické par {sender.title}")
+class Test:
+    def maFonction(sender):
+        print(f"J'ai été clické par {sender.title}")
 
-    if sender.title == "=":
-        res = calculator.doCalculus()
-        myWindow.addLabel(f"{calculator.total} = {res}")
-    else:
-        calculator.append(sender.title)
+        if sender.title == "=":
+            res = calculator.doCalculus()
+            myWindow.addLabel(f"{calculator.total} = {res}")
+        else:
+            calculator.append(sender.title)
+
+        nb1 = calculator.updateNb1()
+
+        op = calculator.updateOp()
+
+        nb2 = calculator.updateNb2()
+
+        if (op == None):
+            op = ""
+        
+        if (nb2 == None):
+            nb2 = ""
+
+        if sender.title != "=":
+            myWindow.addLabel(f"{nb1} {op} {nb2}")
 
 
 calculator = CalculatorBrain()
@@ -143,7 +159,7 @@ titles = [
         "column":19,
     },
     {
-        "title":"*",
+        "title":"x",
         "row":19,
         "column":18,
     },
@@ -159,7 +175,7 @@ titles = [
     },
     ]
 for title in titles:
-    myButton = myWindow.addButton(title["title"], maFonction, title["row"], title["column"])
+    myButton = myWindow.addButton(title["title"], Test.maFonction, title["row"], title["column"])
 
 # myWindow.changeText()
 

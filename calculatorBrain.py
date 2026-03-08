@@ -1,16 +1,14 @@
-
-
 class CalculatorBrain:
-
     def __init__(self):
         self.total = None
         self.nb1 = None
         self.nb2 = None
         self.operator = None
+        self.label = None
 
     def append(self,value):
 
-        if not value.isdigit() and value not in ["+","-","*","/"]:
+        if not value.isdigit() and value not in ["+","-","x","/"]:
             print("Value must be a digit or an operator")
             return False
 
@@ -32,7 +30,7 @@ class CalculatorBrain:
             self.nb1 = nb1
             return True
         
-        if self.nb1 != None and self.operator == None and self.nb2 == None and nb1 not in ["+","-","*","/"]:
+        if self.nb1 != None and self.operator == None and self.nb2 == None and nb1 not in ["+","-","x","/"]:
             var = str(self.nb1) + str(nb1)
             print(var)
             self.nb1 = int(var)
@@ -44,7 +42,7 @@ class CalculatorBrain:
     def setNb2(self, nb2):
         if self.nb1 != None and self.operator != None and self.nb2 == None:
             self.nb2 = nb2
-            return True
+            return True and self.nb2
         
         if self.nb1 != None and self.operator != None and self.nb2 != None:
             var = str(self.nb2) + str(nb2)
@@ -81,6 +79,15 @@ class CalculatorBrain:
     def divided(self):
         return self.nb1 / self.nb2
     
+    def updateNb1(self):
+        return self.nb1
+    
+    def updateNb2(self):
+        return self.nb2
+    
+    def updateOp(self):
+        return self.operator
+    
     def doCalculus(self):
         res = None
         if self.operator == "+":
@@ -89,7 +96,7 @@ class CalculatorBrain:
         if self.operator == "-":
             res = self.minus()
             self.total = f"{self.nb1} {self.operator} {self.nb2}"
-        if self.operator == "!":
+        if self.operator == "x":
             res = self.time()
             self.total = f"{self.nb1} {self.operator} {self.nb2}"
         if self.operator == "/":
