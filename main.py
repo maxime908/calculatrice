@@ -15,7 +15,7 @@ class MyButton:
     def __init__(self, master, text, functionCalled, row, column):
         self.title = text
         self.functionCalled = functionCalled
-        tk.Button(master, text=text, anchor="w", font=('Verdana', 24, 'bold'), width=5, cursor="target", command=self.on_click).grid(row=row, column=column, rowspan=5, padx=5, pady=5, sticky="W")
+        tk.Button(master, text=text, anchor="center", font=('Verdana', 24, 'bold'), width=5, cursor="target", command=self.on_click).grid(row=row, column=column, rowspan=5, padx=5, pady=5, sticky="W")
 
     def on_click(self):
         print(f"Dans la classe {self.title}")
