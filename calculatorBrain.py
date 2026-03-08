@@ -29,7 +29,12 @@ class CalculatorBrain:
     def setNb1(self, nb1):
 
         if self.nb1 == None and self.operator == None and self.nb2 == None:
-            var = str(nb1)
+            self.nb1 = nb1
+            return True
+        
+        if self.nb1 != None and self.operator == None and self.nb2 == None and nb1 not in ["+","-","*","/"]:
+            var = str(self.nb1) + str(nb1)
+            print(var)
             self.nb1 = int(var)
             return True
         
@@ -38,7 +43,12 @@ class CalculatorBrain:
     
     def setNb2(self, nb2):
         if self.nb1 != None and self.operator != None and self.nb2 == None:
-            var = str(nb2)
+            self.nb2 = nb2
+            return True
+        
+        if self.nb1 != None and self.operator != None and self.nb2 != None:
+            var = str(self.nb2) + str(nb2)
+            print(var)
             self.nb2 = int(var)
             return True
         
@@ -76,11 +86,9 @@ class CalculatorBrain:
         if self.operator == "+":
             res = self.add()
             self.total = f"{self.nb1} {self.operator} {self.nb2}"
-            print(self.total)
         if self.operator == "-":
             res = self.minus()
             self.total = f"{self.nb1} {self.operator} {self.nb2}"
-            print(self.total)
         if self.operator == "!":
             res = self.time()
             self.total = f"{self.nb1} {self.operator} {self.nb2}"

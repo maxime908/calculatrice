@@ -73,7 +73,6 @@ def maFonction(sender):
     if sender.title == "=":
         res = calculator.doCalculus()
         myWindow.addLabel(f"{calculator.total} = {res}")
-        print(res)
     else:
         calculator.append(sender.title)
 
