@@ -3,13 +3,14 @@
 class CalculatorBrain:
 
     def __init__(self):
+        self.total = None
         self.nb1 = None
         self.nb2 = None
         self.operator = None
 
     def append(self,value):
 
-        if not value.isdigit() and value not in ["+","-","*"]:
+        if not value.isdigit() and value not in ["+","-","*","/"]:
             print("Value must be a digit or an operator")
             return False
 
@@ -28,7 +29,8 @@ class CalculatorBrain:
     def setNb1(self, nb1):
 
         if self.nb1 == None and self.operator == None and self.nb2 == None:
-            self.nb1 = nb1
+            var = str(nb1)
+            self.nb1 = int(var)
             return True
         
         print("Impossible de set nb1")
@@ -36,7 +38,8 @@ class CalculatorBrain:
     
     def setNb2(self, nb2):
         if self.nb1 != None and self.operator != None and self.nb2 == None:
-            self.nb2 = nb2
+            var = str(nb2)
+            self.nb2 = int(var)
             return True
         
         print("Impossible de set nb2")
@@ -65,23 +68,25 @@ class CalculatorBrain:
     def time(self):
         return self.nb1 * self.nb2
     
+    def divided(self):
+        return self.nb1 / self.nb2
+    
     def doCalculus(self):
         res = None
         if self.operator == "+":
             res = self.add()
+            self.total = f"{self.nb1} {self.operator} {self.nb2}"
+            print(self.total)
         if self.operator == "-":
             res = self.minus()
-        if self.operator == "*":
+            self.total = f"{self.nb1} {self.operator} {self.nb2}"
+            print(self.total)
+        if self.operator == "!":
             res = self.time()
+            self.total = f"{self.nb1} {self.operator} {self.nb2}"
+        if self.operator == "/":
+            res = self.divided()
+            self.total = f"{self.nb1} {self.operator} {self.nb2}"
 
         self.reset()
         return res
-    
-calculator = CalculatorBrain()
-
-calculator.append("%")
-calculator.append("+")
-calculator.append("2")
-
-res = calculator.doCalculus()
-print(res)
