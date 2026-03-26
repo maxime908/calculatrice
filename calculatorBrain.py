@@ -13,7 +13,7 @@ class CalculatorBrain:
             return False
 
         if value.isdigit():
-             value = int(value)
+            value = int(value)
 
         if self.setNb1(value):
             return True
@@ -42,7 +42,7 @@ class CalculatorBrain:
     def setNb2(self, nb2):
         if self.nb1 != None and self.operator != None and self.nb2 == None:
             self.nb2 = nb2
-            return True and self.nb2
+            return True
         
         if self.nb1 != None and self.operator != None and self.nb2 != None:
             var = str(self.nb2) + str(nb2)
@@ -104,4 +104,5 @@ class CalculatorBrain:
             self.total = f"{self.nb1} {self.operator} {self.nb2}"
 
         self.reset()
+
         return res
